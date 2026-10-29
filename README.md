@@ -8,6 +8,7 @@
 |---|---|
 | `README.md` | чек-лист, 5 тест-кейсов, баг-репорты, итоги |
 | `forms-check.js` | запросы для проверки форм регистрации и входа (28 проверок) |
+| `autotests/` | автотесты формы входа на Selenium (задание 4) |
 | `screens/` | скриншоты браузера, DevTools и терминала |
 
 Запуск проверок: сначала запустить портал (`npm run seed`, `npm start` в conf-portal), потом `node forms-check.js`.
@@ -58,3 +59,16 @@
 
 GET /api/events: код 200, ответ JSON-массив мероприятий, заголовки `Cache-Control: no-store`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`. Скриншоты `screens/dt_*.png`.
 POST /api/login с неверным паролем: код 401, тело ответа `{"error":"Неверный логин или пароль"}`, `Set-Cookie` нет.
+
+## Автотест формы входа (задание 4)
+
+Папка `autotests`: Selenium и pytest, шаблон Page Object (`pages/login_page.py`), явные ожидания `WebDriverWait`, скриншот при падении теста (`conftest.py`, папка `failed`).
+Пять тестов: вход участника, вход администратора, неверный пароль, неизвестный логин, пустые поля. Запуск при работающем портале:
+
+```
+cd autotests
+pip install -r requirements.txt
+pytest -v
+```
+
+Результат: 5 passed (`screens/autotests_run.png`).
